@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import * as api from '../components/api';
 import { useSearchParams } from 'react-router-dom';
@@ -13,12 +13,14 @@ export const Movies = () => {
   };
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
-  const getMovie = () => {
+
+  const getMovie = useCallback(() => {
     api
       .getSearchMovies(query)
       .then(data => setDataSearch(data.data.results))
       .catch(e => alert(e));
-  };
+  }, [query]);
+
   const handleSubmit = event => {
     event.preventDefault();
     query && getMovie();
