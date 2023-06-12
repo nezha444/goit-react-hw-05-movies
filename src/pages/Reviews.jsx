@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 export const Reviews = () => {
   const [reviews, setReviews] = useState('');
   const { movieId } = useParams();
-  console.log(reviews);
+  // console.log(reviews);
 
   useEffect(() => {
     api
@@ -14,7 +14,7 @@ export const Reviews = () => {
         setReviews(data.data.results);
       })
       .catch(e => console.log(e));
-  }, []);
+  }, [movieId]);
   return reviews && reviews.length > 0 ? (
     <ul>
       {reviews &&

@@ -26,7 +26,7 @@ export const Movies = () => {
 
   useEffect(() => {
     query && getMovie();
-  }, []);
+  }, [getMovie]);
 
   return (
     <>

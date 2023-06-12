@@ -17,7 +17,7 @@ export const MovieDetails = () => {
   };
   useEffect(() => {
     openDetails(movieId);
-  }, []);
+  }, [movieId]);
 
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
