@@ -7,17 +7,18 @@ const MovieDetails = () => {
 
   const [oneMovie, setOneMovie] = useState('');
 
-  const openDetails = () => {
-    const movie = api.getDetailsMovies(movieId);
-    movie
-      .then(data => {
-        setOneMovie(data.data);
-      })
-      .catch(error => console.log(error));
-  };
   useEffect(() => {
+    const openDetails = () => {
+      const movie = api.getDetailsMovies(movieId);
+      movie
+        .then(data => {
+          setOneMovie(data.data);
+        })
+        .catch(error => console.log(error));
+    };
+
     openDetails();
-  }, []);
+  }, [movieId]);
 
   const location = useLocation();
   console.log(location);

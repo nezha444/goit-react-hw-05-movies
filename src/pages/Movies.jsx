@@ -4,17 +4,20 @@ import * as api from '../components/api';
 import { useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [inputValue, setInputValue] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+  const [inputValue, setInputValue] = useState(query || '');
   const [dataSearch, setDataSearch] = useState([]);
   const location = useLocation();
 
   const handleChange = event => {
     const value = event.target.value;
     setInputValue(value);
+    if (!value) {
+      setSearchParams({});
+    }
     // setSearchParams({ query: value });
   };
-  const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query');
 
   // const getMovie = useCallback(() => {
   //   api
@@ -42,11 +45,7 @@ const Movies = () => {
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <input
-          value={query || inputValue}
-          onChange={handleChange}
-          type="text"
-        />
+        <input value={inputValue} onChange={handleChange} type="text" />
         <button>Search</button>
       </form>
 
