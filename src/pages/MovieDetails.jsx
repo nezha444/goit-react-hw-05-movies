@@ -17,7 +17,7 @@ const MovieDetails = () => {
   };
   useEffect(() => {
     openDetails();
-  }, [movieId]);
+  }, []);
 
   const location = useLocation();
   console.log(location);
