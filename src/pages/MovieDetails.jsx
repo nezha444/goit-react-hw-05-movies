@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import * as api from '../components/api';
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
 
   const [oneMovie, setOneMovie] = useState('');
 
-  const openDetails = movieId => {
+  const openDetails = () => {
     const movie = api.getDetailsMovies(movieId);
     movie
       .then(data => {
@@ -16,7 +16,7 @@ export const MovieDetails = () => {
       .catch(error => console.log(error));
   };
   useEffect(() => {
-    openDetails(movieId);
+    openDetails();
   }, [movieId]);
 
   const location = useLocation();
@@ -67,3 +67,4 @@ export const MovieDetails = () => {
     </div>
   );
 };
+export default MovieDetails;

@@ -1,11 +1,13 @@
 import React from 'react';
 import { ListTrending } from '../components/ListTrending';
 
-export const Home = ({ apiMovies, openDetails }) => {
+const Home = () => {
   return (
     <header>
       <h2>Trending today</h2>
-      <ListTrending openDetails={openDetails} apiMovies={apiMovies} />
+      <ListTrending />
     </header>
   );
 };
+
+export default Home;

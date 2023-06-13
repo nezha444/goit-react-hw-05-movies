@@ -1,9 +1,9 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as api from '../components/api';
 import { useSearchParams } from 'react-router-dom';
 
-export const Movies = () => {
+const Movies = () => {
   const [inputValue, setInputValue] = useState('');
   const [dataSearch, setDataSearch] = useState([]);
   const location = useLocation();
@@ -11,26 +11,33 @@ export const Movies = () => {
   const handleChange = event => {
     const value = event.target.value;
     setInputValue(value);
-    setSearchParams({ query: value });
+    // setSearchParams({ query: value });
   };
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
 
-  const getMovie = useCallback(() => {
-    api
-      .getSearchMovies(query)
-      .then(data => setDataSearch(data.data.results))
-      .catch(e => alert(e));
-  }, [query]);
+  // const getMovie = useCallback(() => {
+  //   api
+  //     .getSearchMovies(query)
+  //     .then(data => setDataSearch(data.data.results))
+  //     .catch(e => alert(e));
+  // }, [query]);
 
   const handleSubmit = event => {
     event.preventDefault();
-    query && getMovie();
+    setSearchParams({ query: inputValue });
+    // query && getMovie();
   };
 
   useEffect(() => {
+    const getMovie = () => {
+      api
+        .getSearchMovies(query)
+        .then(data => setDataSearch(data.data.results))
+        .catch(e => alert(e));
+    };
     query && getMovie();
-  }, [getMovie, query]);
+  }, [query]);
 
   return (
     <>
@@ -76,3 +83,5 @@ export const Movies = () => {
     </>
   );
 };
+
+export default Movies;

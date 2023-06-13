@@ -1,18 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export const ListTrindingItem = ({ itemId, title, openDetails }) => {
+export const ListTrindingItem = ({ itemId, title }) => {
   return (
     <li key={itemId}>
-      <Link
-        onClick={() => {
-          openDetails(itemId);
-          console.log(itemId);
-        }}
-        to={`/movies/${itemId}`}
-      >
-        {title}
-      </Link>
+      <Link to={`/movies/${itemId}`}>{title}</Link>
     </li>
   );
 };
