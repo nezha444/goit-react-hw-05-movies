@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 import * as api from '../components/api';
 export const MovieDetails = () => {
@@ -19,12 +19,12 @@ export const MovieDetails = () => {
     openDetails(movieId);
   }, [movieId]);
 
-  const navigate = useNavigate();
-  const goBack = () => navigate(-1);
+  const location = useLocation();
+  console.log(location);
 
   return (
     <div>
-      <Link onClick={goBack}>Go back</Link>
+      <Link to={location.state ?? '/'}>Go back</Link>
       <div key={oneMovie.id}>
         <img
           width={250}
@@ -55,9 +55,13 @@ export const MovieDetails = () => {
           ))}
       </div>
       <div>
-        <Link to="cast">Cast</Link>
+        <Link state={location.state} to="cast">
+          Cast
+        </Link>
         <br />
-        <Link to="reviews">Reviews</Link>
+        <Link state={location.state} to="reviews">
+          Reviews
+        </Link>
       </div>
       <Outlet />
     </div>

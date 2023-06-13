@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useCallback } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as api from '../components/api';
 import { useSearchParams } from 'react-router-dom';
 
 export const Movies = () => {
   const [inputValue, setInputValue] = useState('');
   const [dataSearch, setDataSearch] = useState([]);
+  const location = useLocation();
+
   const handleChange = event => {
     const value = event.target.value;
     setInputValue(value);
@@ -47,6 +49,7 @@ export const Movies = () => {
             <Link
               style={{ textDecoration: 'none', color: 'black' }}
               to={`/movies/${el.id}`}
+              state={location}
             >
               <img
                 width={100}
@@ -61,6 +64,7 @@ export const Movies = () => {
             <Link
               style={{ textDecoration: 'none', color: 'black' }}
               to={`/movies/${el.id}`}
+              state={location}
             >
               {el.title}
               <br />
