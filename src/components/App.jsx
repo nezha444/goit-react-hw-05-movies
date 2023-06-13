@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+// import { lazy, Suspense } from 'react';
 import { Header } from '../pages/Header';
 // import { useEffect, useState } from 'react';
 // import * as api from './api.js';
