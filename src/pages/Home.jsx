@@ -1,7 +1,7 @@
 import React from 'react';
 import { ListTrending } from '../components/ListTrending';
 
-const Home = () => {
+export const Home = () => {
   return (
     <header>
       <h2>Trending today</h2>
@@ -10,4 +10,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+// export default Home;
