@@ -1,20 +1,6 @@
 import { ListTrindingItem } from './ListTrindingItem';
-import * as api from '../components/api';
-import { useEffect } from 'react';
-import { useState } from 'react';
 
-export const ListTrending = () => {
-  const [apiMovies, setApiMovies] = useState([]);
-
-  useEffect(() => {
-    api
-      .getTrendingMovies()
-      .then(data => {
-        setApiMovies(data.data.results);
-      })
-      .catch(error => console.log(error));
-  }, []);
-
+export const ListTrending = ({ apiMovies }) => {
   return (
     <ul>
       {apiMovies.map(el => (

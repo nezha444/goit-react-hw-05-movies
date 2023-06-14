@@ -13,9 +13,7 @@ export const Movies = () => {
   const handleChange = event => {
     const value = event.target.value;
     setInputValue(value);
-    if (!value) {
-      setSearchParams({});
-    }
+
     // setSearchParams({ query: value });
   };
 
